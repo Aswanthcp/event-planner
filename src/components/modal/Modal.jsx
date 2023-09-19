@@ -12,6 +12,7 @@ import axios from "../../utils/axios";
 import { itemUserBooking } from "../../utils/Constants";
 
 import styles from "./BasicModal.module.scss";
+import { ToastContainer, toast } from "react-toastify";
 
 const modalStyle = {
   position: "absolute",
@@ -54,17 +55,31 @@ export default function BasicModal({ item, user }) {
         }
       )
       .then((response) => {
+        if(response){
+          toast.success("Items booking successful!");
         navigate("/itemList");
+
+        }
+        
       })
       .catch((error) => {
-        console.error(error);
-        // Handle any error that occurs during the request
+        if (error.response && error.response.data) {
+          console.log(error.response.data);
+          toast.error(error.response.data);
+        } else {
+          toast.error("An error occurred.");
+        }
       });
   };
 
   return (
     <div>
-      <Button style={{backgroundColor:"black",color:"white"}} onClick={handleOpen}>Rent or Book Now</Button>
+      <Button
+        style={{ backgroundColor: "black", color: "white" }}
+        onClick={handleOpen}
+      >
+        Rent or Book Now
+      </Button>
       <Modal
         open={open}
         onClose={handleClose}
@@ -76,7 +91,7 @@ export default function BasicModal({ item, user }) {
             SELECT ITEMS
           </Typography>
           <hr />
-          
+
           <div className={styles["form-group"]}>
             <label className={styles["label"]}>Quantity</label>
             <TextField
@@ -86,7 +101,7 @@ export default function BasicModal({ item, user }) {
               fullWidth
             />
           </div>
-  
+
           <div className={styles["form-group"]}>
             <label className={styles["label"]}>Book Date</label>
             <DatePicker
@@ -115,6 +130,7 @@ export default function BasicModal({ item, user }) {
           </div>
         </Box>
       </Modal>
+      <ToastContainer />
     </div>
   );
 }
