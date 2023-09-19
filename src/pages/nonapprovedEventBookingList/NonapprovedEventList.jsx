@@ -2,22 +2,19 @@ import Navbar from "../../components/navbar/Navbar";
 import Header from "../../components/header/Header";
 import { nonapprovedEventBookings } from "../../utils/Constants";
 
-import "./ToggleBookingListPage.scss"; // Assuming you have a CSS file for this component
+import "./style.scss"; // Assuming you have a CSS file for this component
 
 import NonapprovedEventBookingList from "../../components/bookingList/NonapprovalEventBooking";
 
-const NonApproveBookingListPage = () => {
-
-
+const NonApproveEventBookingListPage = () => {
   return (
-    <>
+    <div style={{ backgroundColor: "white" }}>
       <Navbar />
-      <Header />
       <div className="listContainer">
         <NonapprovedEventBookingList url={nonapprovedEventBookings} />
       </div>
-    </>
+    </div>
   );
 };
 
-export default NonApproveBookingListPage;
+export default NonApproveEventBookingListPage;

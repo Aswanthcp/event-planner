@@ -211,10 +211,14 @@ const BookingList = ({ url }) => {
                               {row.item.price}
                             </div>
                           </td>
-                          <td className="whitespace-nowrap px-12 py-4">
-                            {row.is_paid ? "status pay-status" : "status"}
+                          <td
+                            className={`whitespace-nowrap px-12 py-4 ${
+                              row.is_paid ? "status pay-status" : "status"
+                            }`}
+                          >
                             {row.is_paid ? "Yes" : "No"}
                           </td>
+
                           <td className="whitespace-nowrap px-12 py-4">
                             {!row.is_paid && (
                               <Button

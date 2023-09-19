@@ -52,11 +52,12 @@ export default function EventModal({ event, user, eventname }) {
   }, []);
 
   const handleSubmit = () => {
+    console.log(selectedDatefrom, selectedDateto);
     const payload = {
       event,
       user,
-      selectedDatefrom,
-      selectedDateto,
+      selectedDatefrom: selectedDatefrom.toISOString(), 
+      selectedDateto: selectedDateto.toISOString(),
     };
 
     axios
@@ -81,8 +82,12 @@ export default function EventModal({ event, user, eventname }) {
 
   return (
     <div>
-      
-      <Button style={{backgroundColor:"black",color:"white"}} onClick={handleOpen}>Reserve or Book Now!</Button>
+      <Button
+        style={{ backgroundColor: "black", color: "white" }}
+        onClick={handleOpen}
+      >
+        Reserve or Book Now!
+      </Button>
       <Modal
         open={open}
         onClose={handleClose}
@@ -107,6 +112,7 @@ export default function EventModal({ event, user, eventname }) {
                 dateFormat="d MMMM yyyy"
                 name="checkinDate"
                 className="react-datepicker-popper"
+                utcOffset={0}
               />
             </div>
             <div className="date-picker-container">
@@ -122,10 +128,11 @@ export default function EventModal({ event, user, eventname }) {
                 dateFormat="d MMMM yyyy"
                 name="checkoutDate"
                 className="react-datepicker-popper"
+                utcOffset={0}
               />
             </div>
           </Typography>
-          <Button  onClick={handleSubmit} fullWidth>
+          <Button onClick={handleSubmit} fullWidth>
             Submit
           </Button>
         </Box>

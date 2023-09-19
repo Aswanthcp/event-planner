@@ -16,6 +16,7 @@ import EventOrderListPage from "./pages/eventorderlist/EventOrderListPage";
 import NonApprovedEventBookingListPage from "./pages/bookingList/NonApprovalLists";
 import PaidEventBookingListPage from "./pages/eventorderlist/PaidEventBooking";
 import PageNotFound from "./PageNotFound";
+import NonApproveEventBookingListPage from "./pages/nonapprovedEventBookingList/NonapprovedEventList";
 
 
 
@@ -55,7 +56,7 @@ function App() {
         <Route path="/non-approved-booking" element={token ?<NonApprovedBookingListPage/> : <Navigate to="/login" />}/>
         <Route path="/paid-orders" element={token ?<PaidBookingListPage/> : <Navigate to="/login" />}/>
         <Route path="/event-Booking" element={token ?<EventOrderListPage/> : <Navigate to="/login" />}/>
-        <Route path="/non-approved-event-Booking" element={token ?<NonApprovedEventBookingListPage/> : <Navigate to="/login" />}/>
+        <Route path="/non-approved-event-Booking" element={token ?<NonApproveEventBookingListPage/> : <Navigate to="/login" />}/>
         <Route path="/paid-event-Booking" element={token ?<PaidEventBookingListPage/> : <Navigate to="/login" />}/>
         <Route path='*' element={<PageNotFound/>}/>
 

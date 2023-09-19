@@ -16,13 +16,6 @@ import Button from "@mui/material/Button";
 import "react-toastify/dist/ReactToastify.css";
 import Footer from "../../components/footer/Footer";
 
-const Breadcrumb = () => {
-  return (
-    <div className="breadcrumb">
-      <Link to="/">Home</Link> / <span>Event List</span>
-    </div>
-  );
-};
 
 const CoordinatorList = () => {
   const token = useSelector((state) => state.token);
@@ -109,16 +102,17 @@ const CoordinatorList = () => {
     .sort(sortEvents);
 
   return (
-    <div style={{backgroundColor:"white"}}>
+    <div style={{ backgroundColor: "white" }}>
       <Navbar />
-      <hr/>
+      <hr />
 
-      {/* <Breadcrumb /> */}
       <div className="listContainer">
         <div className="listWrapper">
-          <div className="listResult" >  
-            <h3 style={{paddingLeft:"20px",color:"black"}}>EVENT MANAGEMENT</h3>
-            <div className="search-div" style={{paddingLeft:"20px"}}>
+          <div className="listResult">
+            <h3 style={{ paddingLeft: "20px", color: "black" }}>
+              EVENT MANAGEMENT
+            </h3>
+            <div className="search-div" style={{ paddingLeft: "20px" }}>
               <input
                 type="text"
                 placeholder="Search by name"
@@ -158,35 +152,35 @@ const CoordinatorList = () => {
                 cord={event.coordinator.username}
                 date_avaliable={event.date_available}
                 capacity={event.capacity}
-                imageUrl = {event.imageUrl}
+                imageUrl={event.imageUrl}
               />
             ))}
-       <div className="pagination" style={{paddingTop:"100px"}}>
-        <Button
-          variant="contained"
-          style={{backgroundColor:"black",color:"white"}}
-          onClick={prePage}
-          disabled={!pagination.hasPrevPage}
-        >
-          Prev
-        </Button>
-        <span>
-          Page {pagination.currentPage} of {pagination.totalPages}
-        </span>
-        <Button
-          variant="contained"
-          style={{backgroundColor:"black",color:"white"}}
-          onClick={nextPage}
-          disabled={!pagination.hasNextPage}
-        >
-          Next
-        </Button>
-      </div>
+            <div className="pagination" style={{ paddingTop: "100px" }}>
+              <Button
+                variant="contained"
+                style={{ backgroundColor: "black", color: "white" }}
+                onClick={prePage}
+                disabled={!pagination.hasPrevPage}
+              >
+                Prev
+              </Button>
+              <span>
+                Page {pagination.currentPage} of {pagination.totalPages}
+              </span>
+              <Button
+                variant="contained"
+                style={{ backgroundColor: "black", color: "white" }}
+                onClick={nextPage}
+                disabled={!pagination.hasNextPage}
+              >
+                Next
+              </Button>
+            </div>
             <ToastContainer position="top-right" />
           </div>
         </div>
       </div>
-      <Footer/>
+      <Footer />
     </div>
   );
 };

@@ -43,7 +43,6 @@ const EventOrderList = () => {
         },
       })
       .then(({ data }) => {
-        console.log(data, "ooooooooooo");
         setPagination(data);
       })
       .catch(handleError);
@@ -199,58 +198,62 @@ const EventOrderList = () => {
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-gray-200 bg-white">
-                    {pagination?.results?.map((person) => (
-                      <tr key={person.event.event.name}>
-                        <td className="whitespace-nowrap px-4 py-4">
-                          <div className="flex items-center">
-                            <div className="h-10 w-10 flex-shrink-0">
-                              <img
-                                className="h-10 w-10 rounded-full object-cover"
-                                src={person.event.imageUrl}
-                                alt=""
-                              />
+                    {pagination?.results?.map((person) =>
+                      person.is_paid ? null : (
+                        <tr key={person.event.event.name}>
+                          <td className="whitespace-nowrap px-4 py-4">
+                            <div className="flex items-center">
+                              <div className="h-10 w-10 flex-shrink-0">
+                                <img
+                                  className="h-10 w-10 rounded-full object-cover"
+                                  src={person.event.imageUrl}
+                                  alt=""
+                                />
+                              </div>
+                              <div className="ml-4">
+                                {/* <div className="text-sm font-medium text-gray-900">{person.event.event.name}</div> */}
+                              </div>
                             </div>
-                            <div className="ml-4">
-                              {/* <div className="text-sm font-medium text-gray-900">{person.event.event.name}</div> */}
+                          </td>
+                          <td className="whitespace-nowrap px-5 py-4">
+                            <div className="text-sm text-gray-900 ">
+                              {person.event.event.name}
                             </div>
-                          </div>
-                        </td>
-                        <td className="whitespace-nowrap px-5 py-4">
-                          <div className="text-sm text-gray-900 ">
-                            {person.event.event.name}
-                          </div>
-                        </td>
-                        <td className="whitespace-nowrap px-5">
-                          <div className="text-sm text-gray-900 ">
-                            {person.event.price}
-                          </div>
-                        </td>
-                        <td className="whitespace-nowrap px-12 py-4">
-                          <div className="text-sm text-gray-900 ">
-                            {formatDate(person.date_booked)}
-                          </div>
-                        </td>
-                        <td className="whitespace-nowrap px-12 py-4">
-                          <div className="text-sm text-gray-900 ">
-                            {formatDate(person.date_bookedto)}
-                          </div>
-                        </td>
-                        <td>
-                          {!person.is_paid && (
-                            <Button
-                              style={{ backgroundColor: "black" }}
-                              variant="contained"
-                              onClick={(event) => handleCheckout(event, person)}
-                            >
-                              Pay
-                            </Button>
-                          )}
-                        </td>
-                        <td className="whitespace-nowrap px-4 py-4 text-sm text-gray-700">
-                          {person.role}
-                        </td>
-                      </tr>
-                    ))}
+                          </td>
+                          <td className="whitespace-nowrap px-5">
+                            <div className="text-sm text-gray-900 ">
+                              {person.event.price}
+                            </div>
+                          </td>
+                          <td className="whitespace-nowrap px-12 py-4">
+                            <div className="text-sm text-gray-900 ">
+                              {formatDate(person.date_booked)}
+                            </div>
+                          </td>
+                          <td className="whitespace-nowrap px-12 py-4">
+                            <div className="text-sm text-gray-900 ">
+                              {formatDate(person.date_bookedto)}
+                            </div>
+                          </td>
+                          <td>
+                            {!person.is_paid && (
+                              <Button
+                                style={{ backgroundColor: "black" }}
+                                variant="contained"
+                                onClick={(event) =>
+                                  handleCheckout(event, person)
+                                }
+                              >
+                                Pay
+                              </Button>
+                            )}
+                          </td>
+                          <td className="whitespace-nowrap px-4 py-4 text-sm text-gray-700">
+                            {person.role}
+                          </td>
+                        </tr>
+                      )
+                    )}
                   </tbody>
                 </table>
               </div>
